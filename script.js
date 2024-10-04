@@ -260,7 +260,7 @@ function displayResults(data, itemNameMap) {
         const imageHtml = `<img class="img-fluid loading" src="https://render.albiononline.com/v1/item/${item.id}" data-toggle="tooltip" data-placement="top" title="" data-original-title="${localizedName}" data-was-processed="true" style="width: 50px; height: 50px;">`;
 
         html += `<tr>
-            <td>${imageHtml}</td>W
+            <td>${imageHtml}</td>
             <td>${localizedName}</td>
             <td>${item.city}</td>
             <td>${item.quality}</td>
