@@ -251,12 +251,16 @@ function displayResults(data, itemNameMap) {
     }
 
     // Change the header to only include the Localized Name
-    let html = '<table><tr><th>Localized Name</th><th>City</th><th>Quality</th><th>Price</th><th>Updated</th></tr>';
+    let html = '<table><tr><th>Image</th><th>Localized Name</th><th>City</th><th>Quality</th><th>Price</th><th>Updated</th></tr>';
     data.forEach(item => {
         // Use the mapped localized name
         const localizedName = itemNameMap[item.id] || item.id; // Fallback to item ID if not found
 
+        // Add the image HTML
+        const imageHtml = `<img class="img-fluid loading" src="https://render.albiononline.com/v1/item/${item.id}" data-toggle="tooltip" data-placement="top" title="" data-original-title="${localizedName}" data-was-processed="true" style="width: 50px; height: 50px;">`;
+
         html += `<tr>
+            <td>${imageHtml}</td>
             <td>${localizedName}</td>
             <td>${item.city}</td>
             <td>${item.quality}</td>
