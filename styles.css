@@ -1,0 +1,123 @@
+/* Base styling */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #0a0a0a; /* Dark background for depth */
+    color: #ffffff; /* White text for contrast */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background-color: #1e1e1e; /* Slightly lighter background */
+    border-radius: 12px; /* Soft rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8); /* Enhanced shadow */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #ffcc00; /* Guild color */
+    font-size: 2.5em; /* Increased size for prominence */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Subtle shadow for depth */
+}
+
+h2 {
+    font-size: 1.8em; /* Slightly larger for subheading */
+    color: #e63946; /* Crimson color */
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold; /* Bold for emphasis */
+}
+
+select, button {
+    width: 100%;
+    padding: 12px; /* Increased padding for comfort */
+    margin: 5px 0;
+    border-radius: 6px; /* Rounded corners */
+    border: 1px solid #444; /* Dark border */
+    background-color: #333; /* Dark background for inputs */
+    color: #ffffff; /* White text */
+    font-size: 1em; /* Font size for readability */
+    transition: all 0.3s ease; /* Smooth transitions */
+}
+
+select:focus, button:focus {
+    outline: none;
+    border-color: #ffcc00; /* Highlight on focus */
+    box-shadow: 0 0 8px rgba(255, 204, 0, 0.7); /* Glow effect */
+}
+
+button {
+    background-color: #e63946; /* Button color */
+    color: #ffffff; /* Text color */
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff9999; /* Lighter crimson on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+#results {
+    margin-top: 20px;
+    border-radius: 8px; /* Rounded corners for results */
+    overflow: hidden; /* Contain floated elements */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #444; /* Dark border */
+    padding: 15px; /* Increased padding */
+    text-align: left;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+th {
+    background-color: #e63946; /* Table header color */
+    color: #ffffff; /* White text */
+    text-transform: uppercase; /* Make headers more prominent */
+}
+
+td {
+    background-color: #222; /* Dark background for table data */
+}
+
+tr:nth-child(even) td {
+    background-color: #333; /* Alternate row color */
+}
+
+tr:hover td {
+    background-color: #ff9999; /* Highlight on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em; /* Adjust heading size on smaller screens */
+    }
+
+    h2 {
+        font-size: 1.5em; /* Adjust subheading size */
+    }
+
+    select, button {
+        padding: 10px; /* Reduced padding for smaller screens */
+    }
+}

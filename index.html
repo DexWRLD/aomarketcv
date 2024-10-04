@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albion Online Market Prices</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Albion Online Market Price Search</h1>
+        <h2>Crimson Venom Guild</h2>
+    </header>
+
+    <main>
+        <label for="itemCategory">Select Item Category:</label>
+        <select id="itemCategory">
+            <option value="">--Select a category--</option>
+        </select>
+
+        <label for="itemSelect">Select Item:</label>
+        <select id="itemSelect" disabled>
+            <option value="">--Select an item--</option>
+        </select>
+
+        <label for="locationSelect">Select Locations:</label>
+        <select id="locationSelect" multiple>
+            <option value="Caerleon">Caerleon</option>
+            <option value="Bridgewatch">Bridgewatch</option>
+            <option value="Fort Sterling">Fort Sterling</option>
+            <option value="Lymhurst">Lymhurst</option>
+            <option value="Thetford">Thetford</option>
+            <option value="Martlock">Martlock</option>
+        </select>
+
+        <label for="tierSelect">Select Tier:</label>
+        <select id="tierSelect">
+            <option value="All Tiers">All Tiers</option>
+            <option value="T1">T1</option>
+            <option value="T2">T2</option>
+            <option value="T3">T3</option>
+            <option value="T4">T4</option>
+            <option value="T5">T5</option>
+            <option value="T6">T6</option>
+            <option value="T7">T7</option>
+            <option value="T8">T8</option>
+        </select>
+
+        <label for="qualitySelect">Select Quality Level:</label>
+        <select id="qualitySelect">
+            <option value="All Qualities">All Qualities</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+        <button id="fetchPrices">Fetch Prices</button>
+        <div id="results"></div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
