@@ -166,7 +166,8 @@ fetchPricesButton.addEventListener('click', async () => {
     }
 
     // Show the loading spinner with fade-in
-    document.getElementById('loadingIndicator').classList.add('loading');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    loadingIndicator.classList.add('loading');
 
     // Delay for 1.5 seconds before proceeding
     await new Promise(resolve => setTimeout(resolve, 1500));
@@ -181,14 +182,15 @@ fetchPricesButton.addEventListener('click', async () => {
     if (itemIDs.length === 0) {
         resultsDiv.innerHTML = '<p>No items found for the selected criteria.</p>';
         // Hide the loading spinner with fade-out
-        document.getElementById('loadingIndicator').classList.remove('loading');
+        loadingIndicator.classList.remove('loading');
         return;
     }
 
     // Append tier to the URL if necessary (depending on the API behavior)
     const tierQuery = selectedTier === 'All Tiers' ? '' : `&tiers=${selectedTier}`;
 
-    const url = `https://west.albion-online-data.com/api/v2/stats/view/${itemIDs.join(',')}?locations=${locationsQuery}&qualities=${qualities}${tierQuery}`;
+    // Build the API URL
+    const url = `https://europe.albion-online-data.com/api/v2/stats/view/${itemIDs.join(',')}?locations=${locationsQuery}&qualities=${qualities}${tierQuery}`;
 
     console.log('Fetching prices with URL:', url); // Log the URL
 
@@ -219,9 +221,8 @@ fetchPricesButton.addEventListener('click', async () => {
         resultsDiv.innerHTML += `<p>Error fetching prices: ${error.message}</p>`;
     } finally {
         // Delay for 1 second before hiding
-        await new Promise(resolve => setTimeout(resolve, 5000));
-        // Hide the loading spinner with fade-out
-        document.getElementById('loadingIndicator').classList.remove('loading');
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Delay before hiding loading indicator
+        loadingIndicator.classList.remove('loading');
     }
 });
 
@@ -259,7 +260,7 @@ function displayResults(data, itemNameMap) {
     }
 
     // Change the header to only include the Localized Name
-    let html = '<table><tr><th>Image</th><th>Localized Name</th><th>City</th><th>Quality</th><th>Price</th><th>Updated</th></tr>';
+    let html = '<table class="fade-in"><tr><th>Image</th><th>Localized Name</th><th>City</th><th>Quality</th><th>Price</th><th>Updated</th></tr>';
     data.forEach(item => {
         // Use the mapped localized name
         const localizedName = itemNameMap[item.id] || item.id; // Fallback to item ID if not found
@@ -279,4 +280,10 @@ function displayResults(data, itemNameMap) {
     html += '</table>';
 
     resultsDiv.innerHTML = html;
+
+     // Add fade-in class after a slight delay
+     const table = resultsDiv.querySelector('table');
+     setTimeout(() => {
+         table.classList.add('visible');
+     }, 10); // Delay slightly to allow for transition
 }
