@@ -181,7 +181,7 @@ fetchPricesButton.addEventListener('click', async () => {
     // Append tier to the URL if necessary (depending on the API behavior)
     const tierQuery = selectedTier === 'All Tiers' ? '' : `&tiers=${selectedTier}`;
 
-    const url = `https://west.albion-online-data.com/api/v2/stats/view/${itemIDs.join(',')}?locations=${locationsQuery}&qualities=${qualities}${tierQuery}`;
+    const url = `https://europe.albion-online-data.com/api/v2/stats/view/${itemIDs.join(',')}?locations=${locationsQuery}&qualities=${qualities}${tierQuery}`;
 
     console.log('Fetching prices with URL:', url); // Log the URL
 
@@ -260,7 +260,7 @@ function displayResults(data, itemNameMap) {
         const imageHtml = `<img class="img-fluid loading" src="https://render.albiononline.com/v1/item/${item.id}" data-toggle="tooltip" data-placement="top" title="" data-original-title="${localizedName}" data-was-processed="true" style="width: 50px; height: 50px;">`;
 
         html += `<tr>
-            <td>${imageHtml}</td>
+            <td>${imageHtml}</td>W
             <td>${localizedName}</td>
             <td>${item.city}</td>
             <td>${item.quality}</td>
