@@ -1,79 +1,79 @@
 /* Base styling */
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #0a0a0a; /* Dark background for depth */
-    color: #ffffff; /* White text for contrast */
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container {
     width: 90%;
-    max-width: 900px;
+    max-width: 800px;
     margin: auto;
     padding: 20px;
-    background-color: #1e1e1e; /* Slightly lighter background */
-    border-radius: 12px; /* Soft rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8); /* Enhanced shadow */
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
 }
 
+/* Flexbox for header and results */
 header {
     text-align: center;
     margin-bottom: 20px;
+    flex: 0 0 auto; /* Prevent shrinking */
 }
 
 h1 {
     color: #ffcc00; /* Guild color */
-    font-size: 2.5em; /* Increased size for prominence */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Subtle shadow for depth */
 }
 
 h2 {
-    font-size: 1.8em; /* Slightly larger for subheading */
-    color: #e63946; /* Crimson color */
-    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #ff9999; /* Lighter shade for guild name */
 }
 
 label {
     display: block;
     margin: 10px 0 5px;
-    font-weight: bold; /* Bold for emphasis */
 }
 
-select, button {
+select,
+button {
     width: 100%;
-    padding: 12px; /* Increased padding for comfort */
+    padding: 10px;
     margin: 5px 0;
-    border-radius: 6px; /* Rounded corners */
-    border: 1px solid #444; /* Dark border */
-    background-color: #333; /* Dark background for inputs */
-    color: #ffffff; /* White text */
-    font-size: 1em; /* Font size for readability */
-    transition: all 0.3s ease; /* Smooth transitions */
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #333;
+    color: #fff;
+    flex: 0 0 auto; /* Prevent shrinking */
 }
 
-select:focus, button:focus {
+select:focus,
+button:focus {
     outline: none;
     border-color: #ffcc00; /* Highlight on focus */
-    box-shadow: 0 0 8px rgba(255, 204, 0, 0.7); /* Glow effect */
 }
 
 button {
-    background-color: #e63946; /* Button color */
-    color: #ffffff; /* Text color */
+    background-color: #ffcc00; /* Button color */
+    color: #121212; /* Text color */
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #ff9999; /* Lighter crimson on hover */
-    transform: translateY(-2px); /* Lift effect on hover */
+    background-color: #ff9999; /* Lighter on hover */
 }
 
 #results {
     margin-top: 20px;
-    border-radius: 8px; /* Rounded corners for results */
-    overflow: hidden; /* Contain floated elements */
+    flex: 1 0 auto; /* Allow growth */
 }
 
 table {
@@ -82,21 +82,19 @@ table {
     margin-top: 20px;
 }
 
-th, td {
-    border: 1px solid #444; /* Dark border */
-    padding: 15px; /* Increased padding */
+th,
+td {
+    border: 1px solid #444;
+    padding: 10px;
     text-align: left;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effects */
 }
 
 th {
-    background-color: #e63946; /* Table header color */
-    color: #ffffff; /* White text */
-    text-transform: uppercase; /* Make headers more prominent */
+    background-color: #ffcc00; /* Table header color */
 }
 
 td {
-    background-color: #222; /* Dark background for table data */
+    background-color: #222; /* Table data background */
 }
 
 tr:nth-child(even) td {
@@ -107,17 +105,100 @@ tr:hover td {
     background-color: #ff9999; /* Highlight on hover */
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
     h1 {
-        font-size: 2em; /* Adjust heading size on smaller screens */
+        font-size: 1.8em; /* Smaller heading for mobile */
     }
 
     h2 {
-        font-size: 1.5em; /* Adjust subheading size */
+        font-size: 1.3em; /* Smaller subheading for mobile */
     }
 
-    select, button {
-        padding: 10px; /* Reduced padding for smaller screens */
+    label {
+        font-size: 0.9em; /* Smaller labels */
     }
+
+    select,
+    button {
+        font-size: 0.9em; /* Smaller font for select and buttons */
+    }
+
+    table {
+        font-size: 0.9em; /* Smaller font for table */
+    }
+
+    th, td {
+        padding: 8px; /* Smaller padding for table cells */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em; /* Further reduce heading size for smaller screens */
+    }
+
+    h2 {
+        font-size: 1.1em; /* Further reduce subheading size */
+    }
+
+    select,
+    button {
+        padding: 8px; /* Smaller padding */
+    }
+}
+
+/* Loading spinner styling */
+#loadingIndicator {
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    z-index: 1000; /* Ensure it's on top */
+    opacity: 0; /* Start as invisible */
+    transition: opacity 0.5s ease; /* Transition for opacity */
+}
+
+/* Show the loading indicator */
+/* Loading Indicator Styles */
+#loadingIndicator {
+    display: none; /* Start as hidden */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    z-index: 1000; /* Make sure it’s on top */
+    opacity: 0; /* Start as invisible */
+    transition: opacity 0.5s ease; /* Smooth fade transition */
+}
+
+/* Show the loading indicator */
+.loading {
+    display: flex; /* Show flex */
+    opacity: 1; /* Make it visible */
+}
+
+/* Spinner styles (customize as needed) */
+.spinner {
+    border: 5px solid #f3f3f3; /* Light gray */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px; /* Spinner size */
+    height: 50px; /* Spinner size */
+    animation: spin 1s linear infinite; /* Spin animation */
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

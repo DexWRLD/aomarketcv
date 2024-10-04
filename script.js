@@ -154,7 +154,6 @@ function getItemIDs(itemName, selectedTier, selectedQuality) {
 }
 
 // Fetch prices when the button is clicked
-// Fetch prices when the button is clicked
 fetchPricesButton.addEventListener('click', async () => {
     const selectedItems = Array.from(itemSelect.selectedOptions).map(opt => opt.value);
     const selectedLocations = Array.from(locationSelect.selectedOptions).map(opt => opt.value);
@@ -166,6 +165,12 @@ fetchPricesButton.addEventListener('click', async () => {
         return;
     }
 
+    // Show the loading spinner with fade-in
+    document.getElementById('loadingIndicator').classList.add('loading');
+
+    // Delay for 1.5 seconds before proceeding
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
     // Collect all UniqueNames for the selected items, applying tier and quality filters
     const itemIDs = selectedItems.flatMap(item => getItemIDs(item, selectedTier, selectedQuality));
     const locationsQuery = selectedLocations.join(',');
@@ -175,19 +180,17 @@ fetchPricesButton.addEventListener('click', async () => {
 
     if (itemIDs.length === 0) {
         resultsDiv.innerHTML = '<p>No items found for the selected criteria.</p>';
+        // Hide the loading spinner with fade-out
+        document.getElementById('loadingIndicator').classList.remove('loading');
         return;
     }
 
     // Append tier to the URL if necessary (depending on the API behavior)
     const tierQuery = selectedTier === 'All Tiers' ? '' : `&tiers=${selectedTier}`;
 
-    const url = `https://europe.albion-online-data.com/api/v2/stats/view/${itemIDs.join(',')}?locations=${locationsQuery}&qualities=${qualities}${tierQuery}`;
+    const url = `https://west.albion-online-data.com/api/v2/stats/view/${itemIDs.join(',')}?locations=${locationsQuery}&qualities=${qualities}${tierQuery}`;
 
     console.log('Fetching prices with URL:', url); // Log the URL
-
-    // Create a clickable link
-    const linkHtml = `<p>API Request URL: <a href="${url}" target="_blank">${url}</a></p>`;
-    resultsDiv.innerHTML += linkHtml; // Append the link to the results div
 
     try {
         const response = await fetch(url);
@@ -214,6 +217,11 @@ fetchPricesButton.addEventListener('click', async () => {
     } catch (error) {
         console.error('Error fetching prices:', error);
         resultsDiv.innerHTML += `<p>Error fetching prices: ${error.message}</p>`;
+    } finally {
+        // Delay for 1 second before hiding
+        await new Promise(resolve => setTimeout(resolve, 5000));
+        // Hide the loading spinner with fade-out
+        document.getElementById('loadingIndicator').classList.remove('loading');
     }
 });
 
